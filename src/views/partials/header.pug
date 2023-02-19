@@ -15,7 +15,7 @@ header
                     a(href="/users/logout")  Log Out
                 li
                     a(href=`/users/${loggedInUser._id}`)
-                        if loggedInUser.avatarUrl === ""
+                        if loggedInUser.avatarUrl === undefined
                             span 😀
                         else
                             img.header__avatar(src="/" + loggedInUser.avatarUrl)
@@ -24,5 +24,3 @@ header
                     a(href="/join")  Join
                 li
                     a(href="/login")  Login                        
-            li
-                a(href="/search") Search
