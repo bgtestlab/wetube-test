@@ -164,10 +164,13 @@ export const postEdit = async (req, res) => {
   } = req;
   //console.log(file);
 
+  // TODO: fly.io에 맞게 바꿔줘야 함
+  const isCloudServer = process.env.NODE_ENV == "production";
+
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? (isCloudServer ? file.location : file.path) : avatarUrl,
       name,
       email,
       username,

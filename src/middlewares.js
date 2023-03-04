@@ -1,9 +1,36 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
+
+const BUCKET_NAME = "wetubeee";
+
+const s3 = new aws.S3({
+  credentials: {
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
+});
+
+// TODO. Heroku 방식. fly.io에서 변경 필요
+const isCloudServer = process.env.NODE_ENV === "production";
+
+const s3ImageUploader = multerS3({
+  s3: s3,
+  bucket: `${BUCKET_NAME}/images`,
+  acl: "public-read",
+});
+
+const s3VideoUploader = multerS3({
+  s3: s3,
+  bucket: `${BUCKET_NAME}/videos`,
+  acl: "public-read",
+});
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Wetube";
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.isCloudServer = isCloudServer;
   //console.log(res.locals);
   next();
 };
@@ -31,6 +58,7 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 3000000,
   },
+  storage: isCloudServer ? s3ImageUploader : undefined,
 });
 
 export const videoUpload = multer({
@@ -38,4 +66,5 @@ export const videoUpload = multer({
   limits: {
     fileSize: 10000000,
   },
+  storage: isCloudServer ? s3VideoUploader : undefined,
 });

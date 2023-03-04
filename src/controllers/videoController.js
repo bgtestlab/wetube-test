@@ -69,12 +69,14 @@ export const postUpload = async (req, res) => {
   const { video, thumb } = req.files;
   console.log(video, thumb);
   const { title, description, hashtags } = req.body;
+  // TODO: fly.io에 맞게 바꿔줘야 함
+  const isCloudServer = process.env.NODE_ENV == "production";
   try {
     const newVideo = await Video.create({
       title,
       description,
-      fileUrl: video[0].path,
-      thumbUrl: thumb[0].path,
+      fileUrl: isCloudServer ? video[0].location : video[0].path,
+      thumbUrl: isCloudServer ? thumb[0].location : video[0].path,
       owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     });
