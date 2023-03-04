@@ -9,7 +9,6 @@ const s3 = new aws.S3({
   },
 });
 
-// TODO. Heroku 방식. fly.io에서 변경 필요
 const isCloudServer = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({

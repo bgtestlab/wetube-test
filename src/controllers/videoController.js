@@ -67,9 +67,8 @@ export const postUpload = async (req, res) => {
     user: { _id },
   } = req.session;
   const { video, thumb } = req.files;
-  console.log(video, thumb);
+  console.log(req.files);
   const { title, description, hashtags } = req.body;
-  // TODO: fly.io에 맞게 바꿔줘야 함
   const isCloudServer = process.env.NODE_ENV == "production";
   try {
     const newVideo = await Video.create({
@@ -80,6 +79,9 @@ export const postUpload = async (req, res) => {
       owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     });
+    const user = await User.findById(_id);
+    user.videos.push(newVideo._id);
+    user.save();
     return res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -88,10 +90,6 @@ export const postUpload = async (req, res) => {
       errorMessage: error._message,
     });
   }
-  const user = await User.findById(_id);
-  user.videos.push(newVideo._id);
-  user.save();
-  return res.redirect("/");
 };
 
 export const deleteVideo = async (req, res) => {

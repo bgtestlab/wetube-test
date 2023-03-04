@@ -84,7 +84,7 @@ const handleStart = () => {
     actionBtn.disabled = false;
     actionBtn.addEventListener("click", handleDownload);
   };
-  //console.log(recorder);
+  console.log(recorder);
   recorder.start();
   setTimeout(() => {
     recorder.stop();
@@ -99,7 +99,7 @@ const init = async () => {
       height: 576,
     },
   });
-  //console.log(stream);
+  console.log(stream);
   video.srcObject = stream;
   video.play();
 };
