@@ -2,8 +2,6 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 
-const BUCKET_NAME = "wetubeee";
-
 const s3 = new aws.S3({
   credentials: {
     accessKeyId: process.env.AWS_ID,
@@ -16,13 +14,13 @@ const isCloudServer = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: `${BUCKET_NAME}/images`,
+  bucket: `${process.env.S3_BUCKET}/images`,
   acl: "public-read",
 });
 
 const s3VideoUploader = multerS3({
   s3: s3,
-  bucket: `${BUCKET_NAME}/videos`,
+  bucket: `${process.env.S3_BUCKET}/videos`,
   acl: "public-read",
 });
 

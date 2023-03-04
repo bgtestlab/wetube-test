@@ -6,6 +6,8 @@ kill_timeout = 5
 processes = []
 
 [env]
+  NODE_ENV = "production"
+  S3_BUCKET = "wetube2023"
 
 [experimental]
   auto_rollback = true
