@@ -12,6 +12,10 @@
   margin-top: 40px;
   a {
     text-decoration: underline;
+    color: rgba($color: black, $alpha: 0.7);
+  }
+  span {
+    color: tomato !important;
   }
 }
 

@@ -107,6 +107,18 @@ const handleEnded = () => {
   });
 };
 
+const handleKeyboard = (e) => {
+  if (e.key === " ") {
+    handlePlayAndStop();
+  } else if (e.key === "f") {
+    videoContainer.requestFullscreen();
+    fullScreenBtn.className = "fas fa-compress";
+  } else if (e.key === "Escape") {
+    document.exitFullscreen();
+    fullScreenBtn.className = "fas fa-expand";
+  }
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -117,3 +129,4 @@ videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
+window.addEventListener("keyup", handleKeyboard);
