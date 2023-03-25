@@ -162,7 +162,6 @@ export const postEdit = async (req, res) => {
     body: { name, email, username, location },
     file,
   } = req;
-  //console.log(file);
 
   const isCloudServer = process.env.NODE_ENV == "production";
 
@@ -213,7 +212,7 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save();
   req.flash("info", "Password updated");
-  return res.redirect("users/logout");
+  return res.redirect("logout");
 };
 
 export const see = async (req, res) => {
