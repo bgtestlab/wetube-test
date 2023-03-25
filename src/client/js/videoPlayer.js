@@ -109,13 +109,13 @@ const handleEnded = () => {
 
 const handleKeyboard = (e) => {
   if (e.key === " ") {
-    handlePlayAndStop();
+    handlePlayClick();
   } else if (e.key === "f") {
     videoContainer.requestFullscreen();
-    fullScreenBtn.className = "fas fa-compress";
+    fullScreenIcon.className = "fas fa-compress";
   } else if (e.key === "Escape") {
     document.exitFullscreen();
-    fullScreenBtn.className = "fas fa-expand";
+    fullScreenIcon.className = "fas fa-expand";
   }
 };
 

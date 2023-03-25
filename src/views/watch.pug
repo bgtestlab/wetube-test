@@ -26,20 +26,22 @@ block content
             a(href=`/users/${video.owner._id}`)=video.owner.name
         small.video__createdAt=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
         if String(video.owner._id) === String(loggedInUser._id)
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-            br
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+            div.video__edit
+                a(href=`${video.id}/edit`) Edit Video &rarr;
+                br
+                a(href=`${video.id}/delete`) Delete Video &rarr;
         if loggedIn
-        div.video__add-comments
-            form.video__comment-form#commentForm
-                textarea(cols="30", rows="10", placeholder="Write a nice commment...")
-                button Add Comment
+            div.video__add-comments
+                form.video__comment-form#commentForm
+                    //textarea(cols="100", rows="2", placeholder="Write a nice commment...")
+                    input(type="text", name="comment", placeholder="Write a nice commment...")#comment
+                    button#add__comment Add
     div.video__comments
         ul
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
                     i.fas.fa-comment
-                    span  #{comment.text}
+                    span #{comment.text}
                     if String(comment.owner._id) === String(loggedInUser._id)
                         span.comment__deleteBtn ❌
 block scripts

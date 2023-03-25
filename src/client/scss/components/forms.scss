@@ -1,6 +1,7 @@
 form {
   max-width: 420px;
   margin: 0 auto;
+  margin-top: 30px;
   &:not(.search__form) {
     padding: 30px;
     background-color: rgba($color: $bg, $alpha: 0.7);
@@ -33,14 +34,15 @@ input:not(input[type="range"]) {
 
 input[type="submit"],
 .social__btn {
-  border: none;
-  padding: 12px 20px !important;
+  width: 102%;
+  padding: 15px 20px !important;
+  border-radius: 5px;
+  border: 2px solid rgba($color: black, $alpha: 0.1);
   background-color: tomato !important;
   color: white !important;
   text-align: center !important;
   cursor: pointer;
   display: block;
-  border: none;
   &:focus {
     outline: none;
   }
@@ -50,5 +52,52 @@ input[type="submit"],
   }
   &:hover {
     background-color: rgb(220, 85, 61) !important;
+    border: 2px solid rgba($color: rgb(220, 85, 61), $alpha: 0.1) !important;
+  }
+}
+
+#commentForm {
+  max-width: 100%;
+  border: none;
+}
+
+#comment {
+  all: unset;
+  width: 100%;
+  padding: 0;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid grey !important;
+  border-width: 0px 0px 2px 0px !important;
+
+  &:focus {
+    outline: none;
+    border: 2px solid tomato !important;
+    //border: linear-gradient(to right, #2c242c 0%, #ffb19f 100%) 1 !important;
+    border-width: 0px 0px 2px 0px !important;
+  }
+}
+
+#add__comment {
+  width: 100px;
+  display: none;
+  padding: 15px 20px !important;
+  border-radius: 5px;
+  border: 2px solid rgba($color: rgb(220, 85, 61), $alpha: 0.1) !important;
+  background-color: tomato !important;
+  color: white !important;
+  text-align: center !important;
+  cursor: pointer;
+  display: block;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  &:hover {
+    background-color: rgb(220, 85, 61) !important;
+    border: 2px solid rgba($color: rgb(220, 85, 61), $alpha: 0.1) !important;
   }
 }
