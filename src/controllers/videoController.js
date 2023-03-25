@@ -164,6 +164,7 @@ export const removeComment = async (req, res) => {
     body: { commentId },
   } = req;
 
+  console.log("commentId: " + commentId);
   const comment = await Comment.findByIdAndDelete(commentId);
   return res.status(200).json({ deletedCommentId: comment._id });
 };

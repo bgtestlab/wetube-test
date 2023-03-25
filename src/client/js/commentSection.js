@@ -60,6 +60,8 @@ const handleCommentDeleteClick = async (event) => {
   if (response.status === 200) {
     const { deletedCommentId } = await response.json();
     targetComment.remove();
+  } else {
+    console.log(response);
   }
 };
 
